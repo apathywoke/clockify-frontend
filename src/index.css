@@ -1,0 +1,9 @@
+@import "tailwindcss";
+
+body {
+  font-family: "DM Sans", sans-serif;
+}
+
+body {
+  background-color: #121212;
+}
