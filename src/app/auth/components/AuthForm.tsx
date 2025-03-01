@@ -1,47 +1,45 @@
 import React, { useState } from "react";
 import { useAuth } from "../hooks/useAuth";
-import '../../../index.css'
+import '../../../index.css';
 
 const AuthForm = () => {
   const { login, error } = useAuth();
   const [password, setPassword] = useState("");
-  const [email, setEmail] = useState("");  // Add state for email
-  const [emailError, setEmailError] = useState(""); // Add email error state
+  const [email, setEmail] = useState("");
+  const [emailError, setEmailError] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-
-    // Simple email validation regex
     const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-
     if (!emailRegex.test(email)) {
       setEmailError("Please enter a valid email address.");
       return;
     } else {
-      setEmailError(""); // Reset error if email is valid
+      setEmailError("");
     }
-
-    // Proceed with the login process if validation passes
     login(email, password);
   };
 
   return (
-        <form onSubmit={handleSubmit} className="py-[4vh] flex-col space-y-5 text-[#c7c7c7] flex items-center">
-      <div>
+    <form 
+      onSubmit={handleSubmit} 
+      className="py-6 flex flex-col space-y-4 text-[#c7c7c7] items-center w-full max-w-xl mx-auto px-6 md:px-8 lg:px-10"
+    >
+      <div className="w-full">
         <input
           id="email"
-          type="email"  // Set the input type to email
+          type="email"
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
           className="
-          bg-[#191919] h-[6vh] w-[25vw] px-3 rounded-[5px]
-          focus:border-gray-500 focus:outline-none focus:ring-1 focus:ring-gray-300
+          bg-[#191919] h-14 w-full px-4 rounded-lg
+          focus:border-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-300
           transition-all duration-300 ease-in-out"
         />
       </div>
-      <div>
+      <div className="w-full">
         <input
           id="password"
           type="password"
@@ -50,17 +48,17 @@ const AuthForm = () => {
           onChange={(e) => setPassword(e.target.value)}
           required
           className="
-          bg-[#191919] h-[6vh] w-[25vw] px-3 rounded-[5px]
-          focus:border-gray-500 focus:outline-none focus:ring-1 focus:ring-gray-300
+          bg-[#191919] h-14 w-full px-4 rounded-lg
+          focus:border-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-300
           transition-all duration-300 ease-in-out"
         />
       </div>
-      {error && <p className="text-red-400">{error}</p>}
-      {emailError && <p className="text-red-400">{emailError}</p>} {/* Display error message if email is invalid */}
+      {error && <p className="text-red-400 text-center text-sm">{error}</p>}
+      {emailError && <p className="text-red-400 text-center text-sm">{emailError}</p>}
       <button 
         type="submit"
         className="
-        bg-[#191919] h-[6vh] w-[10vw] rounded-[5px] font-bold cursor-pointer
+        bg-[#191919] h-12 w-30 max-w-xs rounded-lg font-bold cursor-pointer
         hover:ring-2 hover:ring-gray-500 hover:ring-offset-0.5
         transition-all duration-300 ease-in-out"
       >

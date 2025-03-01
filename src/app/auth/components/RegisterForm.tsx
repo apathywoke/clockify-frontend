@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useAuth } from "../hooks/useAuth";
-import '../../../index.css';
+import "../../../index.css";
 
 const RegisterForm = () => {
   const { register, error } = useAuth();
@@ -8,7 +8,7 @@ const RegisterForm = () => {
   const [displayName, setDisplayName] = useState(""); // Separate state for display name
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [emailError, setEmailError] = useState(""); 
+  const [emailError, setEmailError] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -20,7 +20,7 @@ const RegisterForm = () => {
       setEmailError("Please enter a valid email address.");
       return;
     } else {
-      setEmailError(""); 
+      setEmailError("");
     }
 
     // Check if passwords match
@@ -40,8 +40,11 @@ const RegisterForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="py-[4vh] flex-col space-y-5 text-[#c7c7c7] flex items-center">
-      <div>
+    <form
+      onSubmit={handleSubmit}
+      className="py-6 flex flex-col space-y-4 text-[#c7c7c7] items-center w-full max-w-xl mx-auto px-6 sm:px-8 lg:px-10"
+    >
+      <div className="w-full">
         <input
           id="email"
           type="email"
@@ -49,10 +52,10 @@ const RegisterForm = () => {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
-          className="bg-[#191919] h-[6vh] w-[25vw] px-3 rounded-[5px] focus:border-gray-500 focus:outline-none focus:ring-1 focus:ring-gray-300 transition-all duration-300 ease-in-out"
+          className="bg-[#191919] h-14 w-full px-4 rounded-lg focus:border-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-300 transition-all duration-300 ease-in-out"
         />
       </div>
-      <div>
+      <div className="w-full">
         <input
           id="displayName"
           type="text"
@@ -60,10 +63,10 @@ const RegisterForm = () => {
           value={displayName}
           onChange={(e) => setDisplayName(e.target.value)}
           required
-          className="bg-[#191919] h-[6vh] w-[25vw] px-3 rounded-[5px] focus:border-gray-500 focus:outline-none focus:ring-1 focus:ring-gray-300 transition-all duration-300 ease-in-out"
+          className="bg-[#191919] h-14 w-full px-4 rounded-lg focus:border-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-300 transition-all duration-300 ease-in-out"
         />
       </div>
-      <div>
+      <div className="w-full">
         <input
           id="password"
           type="password"
@@ -71,10 +74,10 @@ const RegisterForm = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
-          className="bg-[#191919] h-[6vh] w-[25vw] px-3 rounded-[5px] focus:border-gray-500 focus:outline-none focus:ring-1 focus:ring-gray-300 transition-all duration-300 ease-in-out"
+          className="bg-[#191919] h-14 w-full px-4 rounded-lg focus:border-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-300 transition-all duration-300 ease-in-out"
         />
       </div>
-      <div>
+      <div className="w-full">
         <input
           id="confirmPassword"
           type="password"
@@ -82,15 +85,17 @@ const RegisterForm = () => {
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
           required
-          className="bg-[#191919] h-[6vh] w-[25vw] px-3 rounded-[5px] focus:border-gray-500 focus:outline-none focus:ring-1 focus:ring-gray-300 transition-all duration-300 ease-in-out"
+          className="bg-[#191919] h-14 w-full px-4 rounded-lg focus:border-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-300 transition-all duration-300 ease-in-out"
         />
       </div>
-      {error && <p className="text-red-400">{error}</p>}
-      {emailError && <p className="text-red-400">{emailError}</p>} {/* Email validation error */}
+      {error && <p className="text-red-400 text-center text-sm">{error}</p>}
+      {emailError && (
+        <p className="text-red-400 text-center text-sm">{emailError}</p>
+      )}
 
-      <button 
+      <button
         type="submit"
-        className="bg-[#191919] h-[6vh] w-[10vw] rounded-[5px] font-bold cursor-pointer hover:ring-2 hover:ring-gray-500 hover:ring-offset-0.5 transition-all duration-300 ease-in-out"
+        className="bg-[#191919] h-12 w-32 max-w-xs rounded-lg font-bold cursor-pointer hover:ring-2 hover:ring-gray-500 hover:ring-offset-0.5 transition-all duration-300 ease-in-out"
       >
         SIGN UP
       </button>
