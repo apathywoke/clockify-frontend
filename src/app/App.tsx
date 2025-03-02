@@ -1,6 +1,7 @@
 import './App.css'
 import { LogIn } from '../pages/index'
 import { SignUp } from '../pages/index'
+import { Timer } from '../pages/index'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 const router = createBrowserRouter([
@@ -11,7 +12,11 @@ const router = createBrowserRouter([
   {
     path: '/sign-up',
     element: <SignUp />,
-  }
+  },
+  {
+    path: '/timer',
+    element: <Timer />,
+  },
 ])
 
 function App() {
