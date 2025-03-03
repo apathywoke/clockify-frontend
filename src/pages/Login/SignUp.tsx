@@ -1,10 +1,14 @@
 import AuthPic from '../../shared/assets/images/AuthBackground.png'
 import { RegisterForm } from '../../app/auth/index'
 import { SignUpLabel } from '../../app/auth/index'
+import { Helmet } from 'react-helmet';
 
 const SignUp = () => {
     return(
-        <>
+        <body>
+            <Helmet>
+                <title>Sign Up</title>
+            </Helmet>
             <div className="h-screen flex">
                 {/* 60% Picture Space */}
                 <div
@@ -18,7 +22,8 @@ const SignUp = () => {
                 <RegisterForm />
             </div>
             </div>
-        </>
+        </body>
+            
     )
 }
 
