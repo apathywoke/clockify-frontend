@@ -21,7 +21,7 @@ const Header = () => {
                     type="text"
                     // onChange={(e) => setFindUser(e.target.value)}
                     placeholder='Search user...'
-                    className='font-extralight focus:ring-0 focus:border-red-400
+                    className='font-extralight focus:ring-0 focus:border-red-400 outline-none text-sm
                     transition-all duration-200'>
                     </input>
                 </div>
