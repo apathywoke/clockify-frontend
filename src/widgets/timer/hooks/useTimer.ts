@@ -1,60 +1,60 @@
-import { useState, useEffect, useRef } from 'react';
-
+// useTimer.ts  (The "backend" logic)
+import { useState, useEffect, useRef, useCallback } from 'react';
 
 export type TimerState = 'running' | 'paused' | 'stopped';
 
 const useTimer = () => {
     const [elapsedTime, setElapsedTime] = useState(0);
     const [timerState, setTimerState] = useState<TimerState>('stopped');
-    const [startTime, setStartTime] = useState<number | null>(null);
     const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
-    const start = () => {
+
+    const start = useCallback(() => {
         if (timerState !== 'running') {
-            setStartTime(Date.now() - elapsedTime); // Account for existing elapsed time
             setTimerState('running');
         }
-    };
+    }, [timerState]);
 
-    const pause = () => {
+    const pause = useCallback(() => {
         if (timerState === 'running') {
-            clearInterval(intervalRef.current);  // clear the interval
-            intervalRef.current = null;         // set to null, otherwise it will clear the new interval when the component unmounts
+            clearInterval(intervalRef.current!);
+            intervalRef.current = null;
             setTimerState('paused');
         }
-    };
+    }, [timerState]);
 
-    const resume = () => {
-        if (timerState === 'paused') {
-            setStartTime(Date.now() - elapsedTime);
+    const resume = useCallback(() => {
+        if (timerState === 'paused' || timerState === 'stopped') { // Allow resume from stopped as well
             setTimerState('running');
         }
-    };
+    }, [timerState]);
 
-    const stop = () => {
+
+    const stop = useCallback(() => {
         if (timerState !== 'stopped') {
-            clearInterval(intervalRef.current); // clear the interval
-            intervalRef.current = null;         // set to null, otherwise it will clear the new interval when the component unmounts
+            clearInterval(intervalRef.current!);
+            intervalRef.current = null;
             setElapsedTime(0);
             setTimerState('stopped');
-            setStartTime(null);
         }
-    };
+    }, [timerState]);
 
-    const startInterval = () => {
-        if (timerState === 'running' && startTime !== null) {
-            intervalRef.current = setInterval(() => {
-                setElapsedTime(Date.now() - startTime);
-            }, 10);
-        }
-    };
 
     useEffect(() => {
-        startInterval();  // Call the extracted function
-        return () => {
-            clearInterval(intervalRef.current);
-        } // Simplified cleanup
-    }, [timerState, startTime]);
+        let startTime: number | null = null; // Moved startTime inside useEffect
+
+        if (timerState === 'running') {
+            startTime = Date.now() - elapsedTime; // Initialize only when running
+            intervalRef.current = setInterval(() => {
+                setElapsedTime(Date.now() - startTime!);
+            }, 10);
+
+        }
+
+        return () => clearInterval(intervalRef.current!); // Clear on state change or unmount
+    }, [timerState, elapsedTime]);
+
+
 
     return { elapsedTime, start, pause, resume, stop, timerState };
 };
