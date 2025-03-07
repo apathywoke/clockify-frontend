@@ -5,10 +5,15 @@ import React from 'react'
 const TimerComponent: React.FC = () => {
     const { elapsedTime, start, pause, resume, stop, timerState } = useTimer();
 
+    const handleStart = () => {
+        console.log("Initial timerState:", timerState);
+        start();
+    };
+
     return (
         <div className="flex flex-col items-center space-y-4">
             <div>Time: {formatTime(elapsedTime)}</div> {/* Display formatted time */}
-            <button onClick={start} disabled={timerState === 'running'}>Start</button>
+            <button onClick={handleStart} disabled={timerState === 'running'}>Start</button>
             <button onClick={pause} disabled={timerState !== 'running'}>Pause</button>
             <button onClick={resume} disabled={timerState !== 'paused'}>Resume</button>
             <button onClick={stop} disabled={timerState === 'stopped'}>Stop</button>
