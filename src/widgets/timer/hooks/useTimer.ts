@@ -9,14 +9,12 @@ const useTimer = () => {
     const [startTime, setStartTime] = useState<number | null>(null);
     const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
-
     const start = () => {
         if (timerState !== 'running') {
             setStartTime(Date.now() - elapsedTime); // Account for existing elapsed time
             setTimerState('running');
         }
     };
-
 
     const pause = () => {
         if (timerState === 'running') {
