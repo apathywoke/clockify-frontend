@@ -33,7 +33,6 @@ const useTimer = () => {
         }
     };
 
-
     const stop = () => {
         if (timerState !== 'stopped') {
             clearInterval(intervalRef.current); // clear the interval
