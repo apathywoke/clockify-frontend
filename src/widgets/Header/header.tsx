@@ -7,13 +7,15 @@ import Loop from '../../shared/assets/icons/UI/loop.svg'
 import Bell from '../../shared/assets/icons/Bell.svg'
 import User from '../../shared/assets/icons/User.svg'
 
+
+
 const Header = () => {
 
     return(
         <header className='h-15 px-5 w-full flex items-center justify-between'>
-            <div className='flex inline-flex items-center w-100 justify-between h-full'>
+            <div className='inline-flex items-center w-100 justify-between h-full'>
                 <img src={Logo} alt="Logo"/>
-                <div className='flex inline-flex items-center'>
+                <div className='inline-flex items-center'>
                     <img src={Loop} alt="Loop" className='mr-2'/>
                     <input
                     type="text"

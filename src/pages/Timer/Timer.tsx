@@ -1,17 +1,22 @@
-import { Header } from '../../widgets/index'
+// Timer.tsx (Timer page component)
 import { Helmet } from 'react-helmet';
-import { TimerComponent } from '../../widgets/index.tsx'
- 
+import { Header } from '../../widgets/index'; // Assuming Header component import
+
+import { TimerUI } from '../../widgets/index.tsx'
+
+
+
 const Timer = () => {
-    return(
+
+    return (
         <div>
             <Helmet>
                 <title>Timer</title>
             </Helmet>
             <Header />
-            <TimerComponent />
+            <TimerUI />
         </div>
-    )
-}
+    );
+};
 
 export default Timer;

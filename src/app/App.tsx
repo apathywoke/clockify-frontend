@@ -4,6 +4,8 @@ import { SignUp } from '../pages/index'
 import { Timer } from '../pages/index'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
+import { TimerProvider } from '../widgets/index.tsx';
+
 const router = createBrowserRouter([
   {
     path: '/log-in',
@@ -21,7 +23,9 @@ const router = createBrowserRouter([
 
 function App() {
   return (
-    <RouterProvider router={router} />
+      <TimerProvider>
+        <RouterProvider router={router} />
+      </TimerProvider>
   )
 }
 
