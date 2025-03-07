@@ -51,7 +51,9 @@ const useTimer = () => {
 
     useEffect(() => {
         startInterval();  // Call the extracted function
-        return () => clearInterval(intervalRef.current); // Simplified cleanup
+        return () => {
+            clearInterval(intervalRef.current);
+        } // Simplified cleanup
     }, [timerState, startTime]);
 
     return { elapsedTime, start, pause, resume, stop, timerState };
