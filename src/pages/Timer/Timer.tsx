@@ -4,13 +4,13 @@ import { TimerComponent } from '../../widgets/index.tsx'
  
 const Timer = () => {
     return(
-        <body>
+        <div>
             <Helmet>
                 <title>Timer</title>
             </Helmet>
             <Header />
             <TimerComponent />
-        </body>
+        </div>
     )
 }
 
