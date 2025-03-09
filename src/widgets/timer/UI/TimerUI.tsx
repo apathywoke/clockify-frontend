@@ -27,7 +27,7 @@ const TimerUI: React.FC<TimerUIProps> = ({ showControls = true }) => {
 
     return (
         <div className="flex flex-col items-center space-y-3">
-            <div className="text-4xl font-bold text-blue-500">{formatTime(elapsedTime)}</div>
+            <div className="text-5xl font-bold text-[#191919]">{formatTime(elapsedTime)}</div>
             {showControls && (
                 <div className="flex flex-row space-x-4">
                     {/* Start/Pause/Resume button */}
