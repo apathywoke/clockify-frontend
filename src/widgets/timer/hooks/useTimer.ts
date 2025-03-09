@@ -8,7 +8,6 @@ const useTimer = () => {
     const [timerState, setTimerState] = useState<TimerState>('stopped');
     const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
-
     const start = useCallback(() => {
         if (timerState !== 'running') {
             setTimerState('running');
